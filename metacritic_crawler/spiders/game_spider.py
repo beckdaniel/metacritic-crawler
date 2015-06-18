@@ -1,5 +1,6 @@
 
 import scrapy
+from scrapy.contrib.spiders import CrawlSpider, Rule
 from metacritic_crawler.items import GameItem
 
 
@@ -19,3 +20,10 @@ class GameSpider(scrapy.Spider):
             item['user_score'] = user_score
             print title, expert_score, user_score
             yield item
+        
+        try:
+            next_page = response.xpath('//a[@rel="next"]/@href').extract()[0]
+            next_page = "http://www.metacritic.com" + next_page
+            yield scrapy.Request(next_page, callback=self.parse)
+        except IndexError:
+            pass #finished the crawling
