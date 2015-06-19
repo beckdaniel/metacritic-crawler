@@ -12,6 +12,11 @@ class GameItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     title = scrapy.Field()
+    pub_date = scrapy.Field()
+    developer = scrapy.Field()
+    genre = scrapy.Field()
+    players = scrapy.Field()
+    rating = scrapy.Field()
     avg_critic_score = scrapy.Field()
     avg_user_score = scrapy.Field()
     critic_reviews = scrapy.Field()
