@@ -27,3 +27,4 @@ class ReviewItem(scrapy.Item):
     source = scrapy.Field()
     text = scrapy.Field()
     score = scrapy.Field()
+    date = scrapy.Field()

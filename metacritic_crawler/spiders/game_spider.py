@@ -75,9 +75,11 @@ class GameSpider(scrapy.Spider):
             source = sel.xpath('.//div[@class="source"]/a/text()')[0].extract()
             score = sel.xpath('.//div[contains(@class, "metascore_w")]/text()')[0].extract()
             text = sel.xpath('.//div[contains(@class, "review_body")]/text()')[0].extract().strip()
+            date = sel.xpath('.//div[@class="date"]/text()').extract()
             review['source'] = source
             review['score'] = score
             review['text'] = text
+            review['date'] = date
             response.meta['item']['critic_reviews'].append(review)
 
         try:
@@ -105,9 +107,11 @@ class GameSpider(scrapy.Spider):
                 source = sel.xpath('.//div[@class="name"]/span/text()').extract()[0]
             score = sel.xpath('.//div[contains(@class, "metascore_w")]/text()')[0].extract()
             text =  ' '.join(sel.xpath('.//span[contains(@class, "blurb_expanded")]/text()').extract())
+            date =  sel.xpath('.//div[@class="date"]/text()').extract()
             review['source'] = source
             review['score'] = score
             review['text'] = text
+            review['date'] = date
             response.meta['item']['user_reviews'].append(review)
 
         try:
